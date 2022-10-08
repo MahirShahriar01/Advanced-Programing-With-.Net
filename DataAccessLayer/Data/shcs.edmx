@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="shcsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="PostCode" Type="int" />
+          <Property Name="ProfileId" Type="int" />
+        </EntityType>
+        <EntityType Name="Bgroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="BloodGroup" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProfileId" Type="int" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Payable" Type="nvarchar(max)" />
+          <Property Name="Paid" Type="nvarchar(max)" />
+          <Property Name="Due" Type="nvarchar" MaxLength="50" />
+          <Property Name="AID" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Bed_No" Type="nvarchar(max)" />
+          <Property Name="Problem" Type="nvarchar(max)" />
+          <Property Name="Profileid" Type="int" />
+        </EntityType>
+        <EntityType Name="Live">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Pinfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FirstName" Type="varchar(max)" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="varchar(max)" />
+          <Property Name="PhoneNumber" Type="int" />
+          <Property Name="DoB" Type="date" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="BloodGroup" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="500" />
+          <Property Name="Middle_Name" Type="varchar" MaxLength="500" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="Phone_No" Type="varchar" MaxLength="500" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="Date_Of_Birth" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="500" />
+          <Property Name="Account_Type" Type="varchar" MaxLength="500" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Address_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bgroup_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Bgroup" Type="Self.Bgroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bgroup">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="Profileid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Live_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="Live" Type="Self.Live" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Live">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pinfo_Pinfo">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="Pinfo" Type="Self.Pinfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pinfo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shcsModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bgroup" EntityType="Self.Bgroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Live" EntityType="Self.Live" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pinfo" EntityType="Self.Pinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_Profile" Association="Self.FK_Address_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bgroup_Profile" Association="Self.FK_Bgroup_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Bgroup" EntitySet="Bgroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Profile" Association="Self.FK_Bill_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Live_Profile" Association="Self.FK_Live_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Live" EntitySet="Live" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pinfo_Pinfo" Association="Self.FK_Pinfo_Pinfo">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Pinfo" EntitySet="Pinfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shcsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostCode" Type="Int32" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Address_Profile" FromRole="Address" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Bgroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Bgroup_Profile" FromRole="Bgroup" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Payable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Paid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Due" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bed_No" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Profileid" Type="Int32" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Bill_Profile" FromRole="Bill" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Live">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Live_Profile" FromRole="Live" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Pinfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="Int32" />
+          <Property Name="DoB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Pinfo_Pinfo" FromRole="Pinfo" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Phone_No" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Of_Birth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Account_Type" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Profile" FromRole="Profile" ToRole="Address" />
+          <NavigationProperty Name="Bgroups" Relationship="Self.FK_Bgroup_Profile" FromRole="Profile" ToRole="Bgroup" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_Profile" FromRole="Profile" ToRole="Bill" />
+          <NavigationProperty Name="Live" Relationship="Self.FK_Live_Profile" FromRole="Profile" ToRole="Live" />
+          <NavigationProperty Name="Pinfo" Relationship="Self.FK_Pinfo_Pinfo" FromRole="Profile" ToRole="Pinfo" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Address_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bgroup_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Bgroup" Type="Self.Bgroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bgroup">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="Profileid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Live_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="Live" Type="Self.Live" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Live">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pinfo_Pinfo">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="Pinfo" Type="Self.Pinfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pinfo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="shcs" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Bgroups" EntityType="Self.Bgroup" />
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="Lives" EntityType="Self.Live" />
+          <EntitySet Name="Pinfoes" EntityType="Self.Pinfo" />
+          <EntitySet Name="Profiles" EntityType="Self.Profile" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Address_Profile" Association="Self.FK_Address_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bgroup_Profile" Association="Self.FK_Bgroup_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Bgroup" EntitySet="Bgroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Profile" Association="Self.FK_Bill_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Live_Profile" Association="Self.FK_Live_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Live" EntitySet="Lives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pinfo_Pinfo" Association="Self.FK_Pinfo_Pinfo">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Pinfo" EntitySet="Pinfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shcsModelStoreContainer" CdmEntityContainer="shcs">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="shcsModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address1" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bgroups">
+            <EntityTypeMapping TypeName="shcsModel.Bgroup">
+              <MappingFragment StoreEntitySet="Bgroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="shcsModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Payable" ColumnName="Payable" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Due" ColumnName="Due" />
+                <ScalarProperty Name="AID" ColumnName="AID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Bed_No" ColumnName="Bed_No" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="Profileid" ColumnName="Profileid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lives">
+            <EntityTypeMapping TypeName="shcsModel.Live">
+              <MappingFragment StoreEntitySet="Live">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pinfoes">
+            <EntityTypeMapping TypeName="shcsModel.Pinfo">
+              <MappingFragment StoreEntitySet="Pinfo">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="shcsModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone_No" ColumnName="Phone_No" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="shcsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

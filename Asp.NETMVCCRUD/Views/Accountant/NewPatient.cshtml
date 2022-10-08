@@ -1,0 +1,39 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "NewPatient";
+    Layout = "~/Views/Accountant/_Accountant.cshtml";
+}
+
+<form class="form-horizontal" method="post" action="VerifyPatient">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend id="legend">Search Patient By ID</legend>
+
+        <div class="form-group">
+            <label class="col-md-12 control-label notification" for="fname">@TempData["message22"]</label>
+            <label class="col-md-12 control-label notification2" for="fname">@TempData["message23"]</label>   
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Enter Patient ID :</label>
+            <div class="col-md-4">
+            <input id="Patientid" name="id" type="text" placeholder="Patient ID" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+        <br />
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="save"></label>
+            <div class="col-md-8 reg_button">
+            <button id="save1" name="save" class="btn btn-success">Search</button>
+            <button id="clear1" name="clear" class="btn btn-danger" onclick="location.href='@Url.Action("PatientBill", "Accountant")';return false;">Back</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HospitalModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HospitalModel1StoreContainer">
+          <EntitySet Name="Bill" EntityType="HospitalModel1.Store.Bill" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Payable" Type="varchar" MaxLength="50" />
+          <Property Name="Paid" Type="varchar" MaxLength="50" />
+          <Property Name="Due" Type="varchar" MaxLength="50" />
+          <Property Name="AID" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="varchar" MaxLength="50" />
+          <Property Name="Bed_No" Type="varchar" MaxLength="50" />
+          <Property Name="Problem" Type="varchar" MaxLength="1000" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBModel1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Bills" EntityType="HospitalModel1.Bill" />
+        </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Payable" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Paid" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Due" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Bed_No" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Problem" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HospitalModel1StoreContainer" CdmEntityContainer="DBModel1">
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="HospitalModel1.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Payable" ColumnName="Payable" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Due" ColumnName="Due" />
+                <ScalarProperty Name="AID" ColumnName="AID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Bed_No" ColumnName="Bed_No" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,18 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "PatientBill";
+    Layout = "~/Views/Accountant/_Accountant.cshtml";
+}
+
+<form class="form-horizontal" method="post" action="SearchResult">
+    <fieldset>
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <button id="save1" name="save" class="btn btn-success" onclick="location.href='@Url.Action("NewPatient", "Accountant")';return false;">Admit Patient</button>
+            <button id="clear1" name="clear" class="btn btn-success" onclick="location.href='@Url.Action("SearchPatient", "Accountant")';return false;">Admited Patient Bill</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

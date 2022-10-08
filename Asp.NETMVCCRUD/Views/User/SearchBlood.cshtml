@@ -1,0 +1,56 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "SearchBlood";
+    Layout = "~/Views/User/_User.cshtml";
+}
+
+<h2 id="manageaccount">Search Blood</h2>
+
+<table id="employeeTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>Blood</th>
+            <th>Gender</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone_No</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+</table>
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        var Popup, dataTable;
+        $(document).ready(function () {
+            dataTable =  $("#employeeTable").DataTable({
+                "ajax": {
+                    "url": "/User/GetData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "Blood" },
+                    { "data": "Gender" },
+                    { "data": "First_Name" },
+                    { "data": "Email" },
+                    { "data": "Phone_No" },
+                    { "data": "Address" }
+                    
+
+                ],
+                "language": {
+
+                    "emptyTable" : "No data found, Please click on <b>Add New</b> Button"
+                }
+            });
+        });
+    </script>
+}

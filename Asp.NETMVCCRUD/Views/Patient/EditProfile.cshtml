@@ -1,0 +1,110 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Patient/_Patient.cshtml";
+    var infolist = ViewBag.info;
+}
+
+@foreach (var obj in infolist)
+{
+<form class="form-horizontal" method="post" action="Update">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend id="legend">Edit Profile</legend>
+
+        <div class="form-group">
+            <label class="col-md-12 control-label notification" for="fname">@TempData["message7"]</label>
+            <label class="col-md-12 control-label notification2" for="fname">@TempData["message8"]</label>   
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fname">First Name :</label>  
+            <div class="col-md-4">
+                <input id="fname" name="fname" type="text" class="form-control input-md" value="@obj.fname" disabled>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fname">Middle Name :</label>  
+            <div class="col-md-4">
+                <input id="mname" name="mname" type="text" class="form-control input-md" value="@obj.mname" disabled>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="lname">Last Name :</label>  
+            <div class="col-md-4">
+            <input id="lname" name="lname" type="text" class="form-control input-md" value="@obj.lname">
+    
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="lname">Email :</label>  
+            <div class="col-md-4">
+            <input id="email" name="email" type="email" class="form-control input-md" value="@obj.email" disabled>
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Phone Number :</label>  
+            <div class="col-md-4">
+            <input id="phone" name="phone_no" type="text" class="form-control input-md" value="@obj.phone_no">
+    
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Confirm Password :</label>
+            <div class="col-md-4">
+            <input id="cpassword" name="cpassword" type="password" placeholder="" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Address :</label>
+            <textarea rows="2" id="comment exampleInputDOB1" name="address" placeholder="Address" class="form-control"  required="">@obj.address</textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Gender :</label>
+            <div class="col-md-4">
+            <input class="form-control input-md" required="" value="@obj.Gender" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Blood Group :</label>
+            <div class="col-md-4">
+            <input class="form-control input-md" required="" value="@obj.blood" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Account Type :</label>
+            <div class="col-md-4">
+            <input class="form-control input-md" required="" value="@obj.type" disabled>
+            </div>
+        </div>
+
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="save"></label>
+            <div class="col-md-8 reg_button">
+            <button id="save1" name="save" class="btn btn-success">Update</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+}

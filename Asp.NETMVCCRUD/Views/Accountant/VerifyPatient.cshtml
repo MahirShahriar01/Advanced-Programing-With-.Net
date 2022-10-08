@@ -1,0 +1,93 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "VerifyPatient";
+    Layout = "~/Views/Accountant/_Accountant.cshtml";
+    var infolist = ViewBag.info;
+}
+
+@foreach (var obj in infolist)
+{
+    <form class="form-horizontal" method="post" action="AddBillList">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend id="legend">Patient ID : @obj.id</legend>
+            <br />
+            <input name="email" value="@obj.email" hidden/>
+            <input name="id" value="@obj.id" hidden/>
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Email :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="email" type="text" value="@obj.email" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Admit Date :</label>
+                <input id="exampleInputDOB1 date" name="date" type="date" class="form-control input-md"  required="">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Patient Problem's :</label>
+                <textarea rows="2" id="comment exampleInputDOB1" name="problem" placeholder="Mark Patient Problem's" class="form-control"  required=""></textarea>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Add Bed :</label>
+                <select class="form-control" id="sel1 exampleInputDOB1 AccountType" name="Room">
+                    <option>Select Bed</option>
+                    <option>R101</option>
+                    <option>R102</option>
+                    <option>R103</option>
+                    <option>R104</option>
+                    <option>R105</option>
+                    <option>R106</option>
+                    <option>R107</option>
+                    <option>R108</option>
+                    <option>R109</option>
+                    <option>R110</option>
+                    <option>R201</option>
+                    <option>R202</option>
+                    <option>R203</option>
+                    <option>R204</option>
+                    <option>R205</option>
+                    <option>R206</option>
+                    <option>R207</option>
+                    <option>R208</option>
+                    <option>R209</option>
+                    <option>R210</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Payable Amount :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="payable" type="text" Placeholder="Input Payable Amount" class="form-control input-md" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Paid :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="paid" type="text" Placeholder="Input Paid Amount" class="form-control input-md" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Due :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="due" type="text" Placeholder="Input Due Amount" class="form-control input-md" required="">
+                </div>
+            </div>
+            <br />
+           
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="save"></label>
+                <div class="col-md-8 reg_button">
+                <button id="save1" name="save" class="btn btn-success">Update</button>
+                <button id="clear1" name="clear" class="btn btn-danger" onclick="location.href='@Url.Action("NewPatient", "Accountant")';return false;">Search Again</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+}
+

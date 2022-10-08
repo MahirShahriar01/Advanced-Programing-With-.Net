@@ -1,0 +1,7 @@
+insert into Bill(Email, Payable, Paid, Due) values('mehedi@gmail.com', '6000', '1000', '5000');
+update Bill set AID='1017' where id='3';
+ALTER TABLE Bill ADD AID int;
+
+select sum(Payable) from Bill;
+
+DELETE FROM Bill WHERE ID='3';

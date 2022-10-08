@@ -1,0 +1,31 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Accountant/_Accountant.cshtml";
+    var infolist = ViewBag.info;
+}
+
+@foreach (var obj in infolist)
+{
+    
+    <div class="data">
+        <div>
+        <img id="profileimg" src="~/Content/image/pimage.png" />
+        </div>
+    
+        <div id="homedata">
+            <h3>@obj.fname @obj.mname @obj.lname</h3>
+            <h4>Rool: @obj.type</h4>
+            <h4>Blood: @obj.blood</h4>
+            <h4>Date Of Birth: @obj.date_of_birth</h4>
+            <h4>@obj.phone_no</h4>
+            <h4>@obj.email</h4>
+            <h4>@obj.address</h4>
+        </div>
+    
+        <br />
+        <br />
+    </div>
+    
+}

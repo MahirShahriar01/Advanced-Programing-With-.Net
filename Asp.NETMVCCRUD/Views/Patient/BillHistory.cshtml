@@ -1,0 +1,64 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "BillHistory";
+    Layout = "~/Views/Patient/_Patient.cshtml";
+    var infolist = ViewBag.info;
+}
+
+@foreach (var obj in infolist)
+{
+    <form class="form-horizontal" method="post" action="">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend id="legend">Patient ID : @obj.id</legend>
+            <br />
+            <input name="id" value="@obj.id" hidden/>
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Admit Date :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="date" type="text" value="@obj.date" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Bed No :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="date" type="text" value="@obj.room_no" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Patient Problem's :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="date" type="text" value="@obj.problem" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Email :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="email" type="text" value="@obj.email" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Payable Amount :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="payable" type="text" value="@obj.payable" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Paid :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="paid" type="text" value="@obj.paid" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Due :</label>
+                <div class="col-md-4">
+                <input id="Patientid" name="due" type="text" value="@obj.due" class="form-control input-md" required="" disabled>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+    </form>
+}

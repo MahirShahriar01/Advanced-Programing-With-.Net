@@ -1,0 +1,160 @@
+﻿@model Hospital_Management_System.Models.AccountModels
+
+@{
+    ViewBag.Title = "Newaccount";
+    Layout = "~/Views/Admin/_Admin.cshtml";
+}
+
+<form class="form-horizontal" method="post" action="Register2">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend id="legend">Register Form</legend>
+
+        <div class="form-group">
+            <label class="col-md-12 control-label notification" for="fname">@TempData["message11"]</label>
+            <label class="col-md-12 control-label notification2" for="fname">@TempData["message12"]</label>   
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fname">First Name :</label>  
+            <div class="col-md-4">
+                <input id="fname" name="fname" type="text" placeholder="First Name" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fname">Middle Name :</label>  
+            <div class="col-md-4">
+                <input id="mname" name="mname" type="text" placeholder="Middle Name" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="lname">Last Name :</label>  
+            <div class="col-md-4">
+            <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="lname">Email :</label>  
+            <div class="col-md-4">
+            <input id="email" name="email" type="email" placeholder="exemple@gmail.com" class="form-control input-md" required="">
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Phone Number :</label>  
+            <div class="col-md-4">
+            <input id="phone" name="phone_no" type="text" placeholder="+8801XXXXXXXXX" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password :</label>
+            <div class="col-md-4">
+            <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Confirm Password :</label>
+            <div class="col-md-4">
+            <input id="cpassword" name="cpassword" type="password" placeholder="" class="form-control input-md" required="">
+    
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Date Of Birth :</label>
+            <input id="exampleInputDOB1 date" name="date_of_birth" type="date" class="form-control input-md"  required="">
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Address :</label>
+            <textarea rows="2" id="comment exampleInputDOB1" name="address" placeholder="Address" class="form-control"  required=""></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Gender :</label>
+            <div class="radio" id="radio mark">
+                <label><input id="Gender" name="Gender" type="radio" value="Male" />Male</label>
+                <label><input id="Gender1" name="Gender" type="radio" value="Female" />Female</label>
+                <label><input id="Gender2" name="Gender" type="radio" value="Others" disabled="disabled" />Others</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="blood">Blood Group :</label>
+            <div class="radio" id="radio mark2">
+                <label class="blood"><input name="blood" type="radio" value="A+" />A+</label>
+                <label class="blood"><input name="blood" type="radio" value="A-" />A-</label>
+                <label class="blood"><input name="blood" type="radio" value="B+" />B+</label>
+                <label class="blood"><input name="blood" type="radio" value="B-" />B-</label>
+                <label class="blood"><input name="blood" type="radio" value="AB+" />O+</label>
+                <label class="blood"><input name="blood" type="radio" value="AB-" />O-</label>
+                <label class="blood"><input name="blood" type="radio" value="O+" />AB+</label>
+                <label class="blood"><input name="blood" type="radio" value="O-" />AB-</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Account Type :</label>
+            <select class="form-control" id="sel1 exampleInputDOB1 AccountType" name="AccountType">
+                <option>Select Account Type</option>
+                <option>User</option>
+                <option>Blood_Donor</option>
+                <option>Patient</option>
+                <option>Doctor</option>
+                <option>Accountant</option>
+                <option>Admin</option>
+            </select>
+        </div>
+                                   
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="save"></label>
+            <div class="col-md-8 reg_button">
+            <button id="save3" name="save" class="btn btn-success">Submit</button>
+            <button id="clear" name="clear" class="btn btn-danger" onclick="location.href='@Url.Action("Newaccount", "Admin")';return false;">Reset</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+<div class="col-md-4">
+	<div class="aro-pswd_info">
+		<div id="pswd_info3">
+			<h4>Password Strength</h4>
+			<ul>
+				<li id="poor" class="invalid"><strong>Poor Password</strong></li>
+				<li id="middle" class="invalid"><strong>Middle Password</strong></li>
+				<li id="strong" class="invalid"><strong>Strong Password</strong></li>
+			</ul>
+		</div>
+        <div id="pswd_info4">
+			<h4>Check Confirm Password</h4>
+			<ul>
+				<li id="confirm" class="invalid"><span id='message'>Check Password</span></li>
+			</ul>
+		</div>
+        @*<div id="pswd_info3">
+			<h4>Check Confirm Password</h4>
+			<ul>
+				<li id="checkemail" class="invalid"><span id='message1'>Check Email</span></li>
+			</ul>
+		</div>*@
+	</div>
+</div>
